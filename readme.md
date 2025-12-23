@@ -1,4 +1,4 @@
-cat > README.md << 'EOF'
+
 # ai-swebench-runner
 
 This project runs SWE-bench inference and evaluation to benchmark AI models.
@@ -13,7 +13,7 @@ Requirements:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-``
+```
 Run inference (generate diffs)
 ```bash
 python run_llama.py
