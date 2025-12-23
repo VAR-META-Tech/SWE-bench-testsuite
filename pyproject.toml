@@ -1,9 +1,44 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "swe-bench-testsuite"
 version = "0.1.0"
+description = "A test suite and wrapper for running SWE-bench evaluations"
 requires-python = ">=3.9"
+readme = "readme.md"
 
 dependencies = [
     # SWE-bench installed separately (see setup.sh)
-    "pytest",
+    "pytest>=7.0",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black",
+    "ruff",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["src"]
+
+[tool.setuptools.package-data]
+src = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312", "py313"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
