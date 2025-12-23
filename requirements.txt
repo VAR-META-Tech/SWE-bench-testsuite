@@ -1,0 +1,5 @@
+# SWE-bench installed from source
+-e ./SWE-bench
+
+# Testing
+pytest
