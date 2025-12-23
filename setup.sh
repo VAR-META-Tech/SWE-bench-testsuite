@@ -44,6 +44,20 @@ pip install -e .
 if [ -d "SWE-bench" ]; then
     echo "📦 Installing SWE-bench in editable mode..."
     pip install -e ./SWE-bench
+    
+    # Check if running on macOS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        echo "⚠️  Skipping inference dependencies on macOS (requires GPU/CUDA)"
+        echo "   To run inference, use a Linux machine with GPU"
+        echo "   Evaluation-only tests will still work!"
+    else
+        echo "📦 Installing SWE-bench inference dependencies..."
+        # Use quotes to handle brackets properly on all platforms
+        pip install -e './SWE-bench[inference]'
+        
+        echo "📦 Installing SWE-bench make_datasets dependencies..."
+        pip install -e './SWE-bench[make_datasets]'
+    fi
 else
     echo "⚠️  Warning: SWE-bench directory not found, skipping installation"
 fi
