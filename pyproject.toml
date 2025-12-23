@@ -22,11 +22,10 @@ dev = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["src"]
+# No packages to install - src/ contains standalone scripts
+py-modules = []
 
 [tool.setuptools.package-data]
-src = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
